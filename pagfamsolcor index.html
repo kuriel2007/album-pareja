@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f1e9">
+  <title>Entre nosotros · Nuestro rincón privado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f6f1e9;--ink:#393c32;--muted:#737267;--rose:#9d444e;--rose-light:#ecd9d7;--line:#ded9cd;--green:#53644e;--white:#fffcf7}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}
+    button,input,textarea{font:inherit}
+    button,a,input,textarea{outline-offset:5px}
+    button{cursor:pointer}
+    button:disabled{opacity:.55;cursor:wait}
+    button{transition:background .2s,transform .2s}
+    button:active{transform:scale(.97)}
+    [hidden]{display:none!important}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:'Fraunces',serif;font-weight:400}
+    a{color:var(--rose)}
+    .shell{max-width:1320px;margin:auto;padding:0 6%}
+    header{height:98px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:16px}
+    .brand{font-family:'Fraunces',serif;font-size:25px;letter-spacing:-1px;display:flex;align-items:center;gap:10px}
+    .brand span{color:var(--rose);font-size:30px}
+    .quiet{background:none;border:0;color:var(--muted);padding:10px;font-size:12px}
+    .quiet:hover{color:var(--rose)}
+    .eyebrow{font-size:11px;letter-spacing:2.2px;text-transform:uppercase;color:var(--green);font-weight:700}
+    .login-layout{display:grid;gap:65px;padding:72px 0 80px}
+    .intro h1{font-size:clamp(54px,7vw,94px);line-height:1.04;letter-spacing:-3px;margin:25px 0}
+    em{font-weight:400;color:var(--rose)}
+    .intro>p:not(.eyebrow){max-width:370px;line-height:1.8;color:var(--muted);font-size:15px}
+    .illustration{position:relative;max-width:460px;height:230px;margin-top:32px}
+    .orbit{position:absolute;left:10px;top:25px;width:330px;height:175px;border:1px solid #c7c4b4;border-radius:50%;transform:rotate(-12deg)}
+    .paper{position:absolute;left:50px;top:30px;width:160px;height:180px;background:var(--white);padding:12px;transform:rotate(-10deg);box-shadow:0 12px 26px #393c3210}
+    .paper.second{left:190px;top:10px;transform:rotate(12deg)}
+    .picture{height:125px;position:relative;overflow:hidden;background:#dac0ad}
+    .picture:before{content:"";position:absolute;inset:50px -20px -40px;background:#879276;border-radius:50%;transform:rotate(20deg)}
+    .picture:after{content:"";position:absolute;width:44px;height:44px;left:76px;top:18px;border-radius:50%;background:#f6dfb0}
+    .second .picture{background:#cbd0c0}
+    .second .picture:before{background:#677a6b;transform:rotate(-30deg)}
+    .paper small{display:block;text-align:center;margin-top:10px;font-family:'Fraunces',serif;font-style:italic}
+    .little-heart{position:absolute;left:330px;top:125px;font-size:43px;color:var(--rose);transform:rotate(15deg)}
+    .login-box{align-self:center;padding:34px 0;max-width:410px;width:100%}
+    .login-box h2{font-size:34px;letter-spacing:-1px;margin-bottom:12px}
+    .subtle{font-size:14px;line-height:1.7;color:var(--muted)}
+    label{display:block;font-size:12px;font-weight:600;margin:24px 0 9px}
+    input,textarea{width:100%;border:1px solid var(--line);background:var(--white);border-radius:7px;padding:15px;color:var(--ink)}
+    input:focus,textarea:focus{border-color:var(--rose)}
+    .password-wrap{position:relative}
+    .password-wrap input{padding-right:70px}
+    .password-wrap button{position:absolute;right:8px;top:9px;padding:7px;background:none;border:0;font-size:11px;color:var(--muted)}
+    .primary{background:var(--rose);color:white;border:1px solid var(--rose);padding:15px 24px;border-radius:7px;font-weight:500}
+    .primary:hover{background:#803640}
+    .wide{width:100%;margin-top:25px}
+    .privacy{margin-top:24px;text-align:center;font-size:11px;color:var(--muted);line-height:1.8}
+    footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px}
+    .reveal{animation:arrive .8s both}
+    .delay{animation-delay:.15s}
+    @keyframes arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .app-heading{padding:48px 0 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+    .app-heading h1{font-size:clamp(38px,5vw,62px);letter-spacing:-2px;margin:12px 0}
+    .user-label{font-size:12px;overflow-wrap:anywhere}
+    .tabs{display:flex;gap:30px;border-bottom:1px solid var(--line)}
+    .tabs button{border:0;border-bottom:2px solid transparent;background:none;padding:16px 0;color:var(--muted)}
+    .tabs button[aria-selected=true]{color:var(--rose);border-color:var(--rose)}
+    .section{padding:32px 0 60px}
+    .section-top{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:25px}
+    .section-top h2{font-size:28px;margin-bottom:6px}
+    .empty{padding:65px 20px;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .empty .symbol{font-size:40px;color:var(--rose);margin-bottom:15px}
+    .empty h3{font-size:27px;margin-bottom:10px}
+    .chat{height:390px;overflow:auto;padding:16px 0;display:flex;flex-direction:column;gap:16px}
+    .message{align-self:flex-start;max-width:80%;background:#e7e8dc;padding:14px 18px;border-radius:16px 16px 16px 3px;overflow-wrap:anywhere}
+    .message.mine{align-self:flex-end;background:var(--rose-light);border-radius:16px 16px 3px 16px}
+    .message p{white-space:pre-wrap;margin:5px 0;line-height:1.6;font-size:14px}
+    .message small{font-size:10px;color:#686258}
+    .composer{display:flex;gap:12px;border-top:1px solid var(--line);padding-top:20px}
+    .composer textarea{resize:vertical;min-height:55px;max-height:160px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px}
+    .memory{padding:12px 12px 18px;background:var(--white);box-shadow:0 8px 22px #393c3209}
+    .memory img{width:100%;height:250px;object-fit:cover;display:block;background:var(--rose-light)}
+    .memory h3{font-size:23px;margin:16px 0 7px;overflow-wrap:anywhere}
+    .memory p{font-size:12px;color:var(--muted);margin:0}
+    .memory button{float:right;font-size:11px;padding:0;border:0;background:none;color:var(--rose)}
+    dialog{max-width:650px;width:calc(100% - 32px);max-height:90vh;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);padding:28px}
+    dialog::backdrop{background:#282c3260;backdrop-filter:blur(5px)}
+    .dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .dialog-head h2{font-size:30px;margin:0}
+    details{margin-top:24px}
+    summary{cursor:pointer;font-size:13px;font-weight:600}
+    pre{font-size:11px;line-height:1.6;background:#eae6dd;padding:16px;overflow:auto;max-height:300px}
+    .notice{font-size:12px;line-height:1.7;background:#eae6dd;padding:12px 15px;border-radius:6px}
+    #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:white;padding:14px 22px;border-radius:8px;z-index:10;max-width:calc(100% - 32px);font-size:13px;box-shadow:0 8px 30px #0002}
+    #login-status{font-size:13px;color:var(--rose);line-height:1.6;margin-top:15px}
+    @media(min-width:850px){.login-layout{grid-template-columns:1.2fr 1fr;gap:100px}.login-box{padding-left:45px;border-left:1px solid var(--line);max-width:460px}}
+    @media(max-width:600px){header{height:80px}.brand{font-size:21px}.login-layout{padding:38px 0;gap:0}.illustration{height:200px;transform:scale(.85);transform-origin:left top;margin-bottom:-25px}.login-box{max-width:none}.app-heading{display:block}.section-top{align-items:flex-start}.section-top .primary{padding:12px}.composer .primary{padding:12px}.message{max-width:90%}footer span:last-child{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand"><span aria-hidden="true">♡</span> entre nosotros</div>
+    <div>
+      <button class="quiet" id="setup-button">Configurar Supabase</button>
+      <button class="quiet" id="logout" hidden>Salir ↗</button>
+    </div>
+  </header>
+  <main>
+    <section id="login-view" class="login-layout">
+      <div class="intro reveal">
+        <p class="eyebrow">Un pequeño lugar, solo nuestro</p>
+        <h1>Tú, yo<br>y todo lo <em>bonito.</em></h1>
+        <p>Los mensajes que nos acercan. Las fotos que nos hacen volver. Nuestra historia, guardada aquí.</p>
+        <div class="illustration" aria-hidden="true">
+          <div class="orbit"></div>
+          <div class="paper"><div class="picture"></div><small>un día contigo</small></div>
+          <div class="paper second"><div class="picture"></div><small>mi lugar favorito</small></div>
+          <span class="little-heart">♡</span>
+        </div>
+      </div>
+      <div class="login-box reveal delay">
+        <p class="eyebrow">Nuestra puerta de entrada</p>
+        <h2>Qué bonito verte aquí.</h2>
+        <p class="subtle">Entra con tu correo y contraseña.<br>Este espacio es únicamente para ustedes dos.</p>
+        <form id="login-form">
+          <label for="email">Tu correo electrónico</label>
+          <input id="email" type="email" placeholder="tu@correo.com" autocomplete="username" required>
+          <label for="password">Tu contraseña</label>
+          <div class="password-wrap">
+            <input id="password" type="password" placeholder="Tu llave a nuestro rincón" autocomplete="current-password" required>
+            <button type="button" id="show-password" aria-pressed="false">Mostrar</button>
+          </div>
+          <button class="primary wide" type="submit" id="login-submit">Entrar a nuestro rincón <span aria-hidden="true">→</span></button>
+          <p id="login-status" role="status"></p>
+        </form>
+        <p class="privacy">♧ Acceso privado · Sin registro público<br>Solo las dos cuentas autorizadas en Supabase.</p>
+      </div>
+    </section>
+
+    <section id="app-view" hidden>
+      <div class="app-heading reveal">
+        <div><p class="eyebrow">Nuestra historia sigue aquí</p><h1>Un lugar para <em>los dos.</em></h1></div>
+        <p class="user-label" id="user-label"></p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Nuestro espacio">
+        <button id="messages-tab" role="tab" aria-selected="true" aria-controls="messages-panel">Nuestros mensajes</button>
+        <button id="photos-tab" role="tab" aria-selected="false" aria-controls="photos-panel">Días contigo</button>
+      </div>
+      <section id="messages-panel" class="section" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="section-top"><div><h2>Todo eso que quiero decirte.</h2><p class="subtle">Un mensaje también puede ser un abrazo.</p></div></div>
+        <div id="chat" class="chat" aria-label="Conversación"></div>
+        <form class="composer" id="message-form">
+          <label for="message" class="eyebrow" hidden>Tu mensaje</label>
+          <textarea id="message" aria-label="Tu mensaje" placeholder="Escribe algo bonito…" maxlength="4000" rows="2" required></textarea>
+          <button type="submit" class="primary">Enviar ↗</button>
+        </form>
+        <p class="subtle" style="font-size:11px;margin-top:12px">La conversación se actualiza automáticamente cada 10 segundos.</p>
+      </section>
+      <section id="photos-panel" class="section" role="tabpanel" aria-labelledby="photos-tab" hidden>
+        <div class="section-top">
+          <div><h2>Días que quiero guardar.</h2><p class="subtle">Nuestro álbum de encuentros y pequeños momentos.</p></div>
+          <button class="primary" id="add-photo">＋ Un recuerdo</button>
+        </div>
+        <div id="gallery" class="gallery"></div>
+      </section>
+    </section>
+  </main>
+  <footer><span>Hecho para nosotros, con cariño.</span><span>Las pequeñas cosas también son una gran historia. ♡</span></footer>
+</div>
+
+<dialog id="photo-dialog">
+  <div class="dialog-head"><h2>Guardar un día bonito.</h2><button type="button" class="quiet" data-close="photo-dialog" aria-label="Cerrar">✕</button></div>
+  <form id="photo-form">
+    <label for="photo-title">¿Cómo llamamos a este recuerdo?</label>
+    <input id="photo-title" maxlength="120" placeholder="Esa tarde que no quería que terminara…" required>
+    <label for="photo-date">El día que nos vimos</label>
+    <input id="photo-date" type="date" required>
+    <label for="photo-file">Una foto de nosotros</label>
+    <input id="photo-file" type="file" accept="image/jpeg,image/png,image/webp" required>
+    <p class="subtle">JPG, PNG o WebP · Máximo 10 MB. Guardada en un bucket privado.</p>
+    <button type="submit" class="primary wide">Guardar recuerdo ♡</button>
+  </form>
+</dialog>
+
+<dialog id="setup-dialog">
+  <div class="dialog-head"><h2>Preparar nuestro rincón.</h2><button class="quiet" data-close="setup-dialog" aria-label="Cerrar">✕</button></div>
+  <p class="subtle" style="margin-top:16px">Configuración inicial: ejecuta el SQL de abajo en el <strong>SQL Editor</strong> de tu proyecto y añade su clave pública. Hazlo una sola vez; en otro dispositivo basta con guardar la misma clave pública.</p>
+  <form id="config-form">
+    <label for="project-url">URL de tu proyecto Supabase</label>
+    <input id="project-url" type="url" required>
+    <label for="public-key">Clave publishable o anon (pública)</label>
+    <input id="public-key" type="text" autocomplete="off" placeholder="sb_publishable_… o clave anon" required>
+    <p class="notice">Nunca pegues una clave <strong>service_role</strong> ni una <strong>secret</strong>. La privacidad real depende de las políticas RLS incluidas abajo, no de esconder la clave pública.</p>
+    <button class="primary wide" type="submit">Guardar conexión</button>
+  </form>
+  <details>
+    <summary>1. SQL para proteger mensajes y fotografías</summary>
+    <p class="subtle">Autoriza únicamente los dos UID de tus usuarios actuales. Si recreas una cuenta, cambia su UID aquí. Este script utiliza tablas nuevas llamadas <strong>couple_messages</strong> y <strong>couple_photos</strong>.</p>
+    <button class="quiet" id="copy-sql" type="button">Copiar SQL ↗</button>
+    <pre id="sql-code">-- Ejecutar en el proyecto mmoaxgeqvrsnzcsxxnjs.
+-- Ambos usuarios deben existir en Authentication > Users.
+
+create or replace function public.is_couple_member()
+returns boolean
+language sql stable
+set search_path = ''
+as $$
+  select auth.uid() in (
+    'b62b7adb-29ce-443b-ba3b-fa9904a7d1cf'::uuid,
+    'feae3f03-6773-4c88-ad35-af834405b4b4'::uuid
+  );
+$$;
+
+revoke all on function public.is_couple_member() from public;
+grant execute on function public.is_couple_member() to authenticated;
+
+create table if not exists public.couple_messages (
+  id uuid primary key default gen_random_uuid(),
+  sender_id uuid not null references auth.users(id),
+  body text not null check (length(trim(body)) between 1 and 4000),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.couple_photos (
+  id uuid primary key default gen_random_uuid(),
+  owner_id uuid not null references auth.users(id),
+  title text not null check (length(trim(title)) between 1 and 120),
+  meeting_date date not null,
+  storage_path text unique not null,
+  created_at timestamptz not null default now(),
+  constraint photo_owner_path check (
+    split_part(storage_path, '/', 1) = owner_id::text
+  )
+);
+
+alter table public.couple_messages enable row level security;
+alter table public.couple_photos enable row level security;
+
+revoke all on public.couple_messages, public.couple_photos from anon;
+revoke all on public.couple_messages, public.couple_photos from authenticated;
+grant select, insert on public.couple_messages to authenticated;
+grant select, insert, delete on public.couple_photos to authenticated;
+
+drop policy if exists couple_messages_read on public.couple_messages;
+create policy couple_messages_read on public.couple_messages
+for select to authenticated using (public.is_couple_member());
+
+drop policy if exists couple_messages_write on public.couple_messages;
+create policy couple_messages_write on public.couple_messages
+for insert to authenticated with check (
+  public.is_couple_member() and sender_id = auth.uid()
+);
+
+drop policy if exists couple_photos_read on public.couple_photos;
+create policy couple_photos_read on public.couple_photos
+for select to authenticated using (public.is_couple_member());
+
+drop policy if exists couple_photos_write on public.couple_photos;
+create policy couple_photos_write on public.couple_photos
+for insert to authenticated with check (
+  public.is_couple_member() and owner_id = auth.uid()
+);
+
+drop policy if exists couple_photos_delete on public.couple_photos;
+create policy couple_photos_delete on public.couple_photos
+for delete to authenticated using (
+  public.is_couple_member() and owner_id = auth.uid()
+);
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'couple-memories', 'couple-memories', false, 10485760,
+  array['image/jpeg','image/png','image/webp']
+)
+on conflict (id) do update set
+  public = false,
+  file_size_limit = 10485760,
+  allowed_mime_types = array['image/jpeg','image/png','image/webp'];
+
+drop policy if exists couple_storage_read on storage.objects;
+create policy couple_storage_read on storage.objects
+for select to authenticated using (
+  bucket_id = 'couple-memories' and public.is_couple_member()
+);
+
+drop policy if exists couple_storage_upload on storage.objects;
+create policy couple_storage_upload on storage.objects
+for insert to authenticated with check (
+  bucket_id = 'couple-memories'
+  and public.is_couple_member()
+  and (storage.foldername(name))[1] = auth.uid()::text
+);
+
+drop policy if exists couple_storage_delete on storage.objects;
+create policy couple_storage_delete on storage.objects
+for delete to authenticated using (
+  bucket_id = 'couple-memories'
+  and public.is_couple_member()
+  and (storage.foldername(name))[1] = auth.uid()::text
+);
+
+create index if not exists couple_messages_created_idx
+on public.couple_messages(created_at);
+create index if not exists couple_photos_date_idx
+on public.couple_photos(meeting_date);</pre>
+    <p class="notice">Si ya existen otras políticas en estas tablas o en Storage, revisa que no concedan acceso adicional. Las políticas permisivas se combinan con OR.</p>
+  </details>
+  <details>
+    <summary>2. Si aparece «correo o contraseña incorrectos»</summary>
+    <p class="subtle">En <strong>Authentication → Users</strong>, asegúrate de que las dos cuentas tengan contraseña y correo confirmado. «Email Enabled» no garantiza que exista una contraseña. Si no la recuerdas, usa <strong>Enviar recuperación de contraseña</strong> y el flujo de recuperación configurado para tu proyecto; no borres los usuarios, porque sus UID protegen este espacio.</p>
+    <p class="subtle">Esta página usa <strong>signInWithPassword</strong>, no magic link. No ofrece registro público. Puedes asignar una contraseña desde un entorno administrativo seguro con <strong>auth.admin.updateUserById</strong>; nunca uses la clave administrativa en este HTML.</p>
+  </details>
+  <details>
+    <summary>3. Publicar la página</summary>
+    <p class="subtle">Guarda este archivo como <strong>index.html</strong> y publícalo en un hosting HTTPS como Netlify, Vercel o GitHub Pages. Agrega su dirección en <strong>Authentication → URL Configuration</strong>. No compartas dispositivos sin cerrar sesión. El HTML es público; los datos están protegidos por Supabase.</p>
+  </details>
+</dialog>
+<div id="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const PROJECT = 'https://mmoaxgeqvrsnzcsxxnjs.supabase.co';
+const MEMBERS = ['b62b7adb-29ce-443b-ba3b-fa9904a7d1cf','feae3f03-6773-4c88-ad35-af834405b4b4'];
+let client, currentUser, polling, authSubscription, toastTimer, messageSignature = '', photoSignature = '', photoRefresh = 0;
+let messageLoading = false, photoLoading = false, generation = 0;
+
+function notify(text){
+  $('toast').textContent=text; $('toast').hidden=false;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{$('toast').hidden=true},6000);
+}
+function errorText(error){
+  const message=error?.message || 'No se pudo completar la operación.';
+  if (/Invalid login credentials/i.test(message)) return 'Correo o contraseña incorrectos. Verifica la contraseña de esta cuenta en Supabase y que estés usando el proyecto correcto.';
+  if (/Email not confirmed/i.test(message)) return 'Debes confirmar tu correo antes de entrar.';
+  if (/Failed to fetch/i.test(message)) return 'No se pudo conectar. Revisa tu conexión y la URL de Supabase.';
+  if (/row-level security|permission denied/i.test(message)) return 'Acceso denegado. Revisa los dos UID y las políticas SQL de configuración.';
+  return message;
+}
+function busy(form,value){ form.querySelector('button[type="submit"]').disabled=value; }
+function getConfig(){
+  try{return JSON.parse(localStorage.getItem('entre-nosotros-config')||'{}')}catch{return {}}
+}
+function makeClient(){
+  const config=getConfig();
+  if(!config.key || !config.url || !window.supabase) return;
+  client=window.supabase.createClient(config.url,config.key);
+  const result=client.auth.onAuthStateChange((event,session)=>{
+    if(event==='SIGNED_OUT') showSignedOut();
+    if(event==='SIGNED_IN'||event==='INITIAL_SESSION') setTimeout(()=>openSession(session),0);
+  });
+  authSubscription=result.data.subscription;
+}
+function showSignedOut(){
+  generation++;
+  clearInterval(polling); currentUser=null;
+  $('app-view').hidden=true; $('login-view').hidden=false; $('logout').hidden=true;
+  $('chat').replaceChildren(); $('gallery').replaceChildren();
+  messageSignature=''; photoSignature=''; photoRefresh=0;
+  document.querySelectorAll('dialog[open]').forEach(d=>d.close());
+}
+async function openSession(session){
+  if(!session?.user){showSignedOut();return}
+  if(!MEMBERS.includes(session.user.id)){
+    await client.auth.signOut();
+    $('login-status').textContent='Esta cuenta no está autorizada. Este espacio es únicamente para ustedes dos.';
+    return;
+  }
+  if(currentUser?.id===session.user.id) return;
+  currentUser=session.user; generation++;
+  $('login-view').hidden=true; $('app-view').hidden=false; $('logout').hidden=false;
+  $('user-label').textContent='Conectado: '+currentUser.email;
+  $('password').value='';
+  await Promise.all([loadMessages(),loadPhotos()]);
+  clearInterval(polling);
+  polling=setInterval(()=>{
+    if(currentUser && !document.hidden){loadMessages();loadPhotos()}
+  },10000);
+}
+function emptyState(container,symbol,title,text){
+  const wrapper=document.createElement('div');wrapper.className='empty';wrapper.style.width='100%';
+  const icon=document.createElement('div');icon.className='symbol';icon.textContent=symbol;
+  const heading=document.createElement('h3');heading.textContent=title;
+  const p=document.createElement('p');p.className='subtle';p.textContent=text;
+  wrapper.append(icon,heading,p);container.append(wrapper);
+}
+async function loadMessages(){
+  if(!currentUser||messageLoading)return;
+  messageLoading=true;
+  const version=generation;
+  try{
+    const {data,error}=await client.from('couple_messages').select('*').order('created_at',{ascending:false}).limit(300);
+    if(error)throw error;
+    if(version!==generation || !currentUser)return;
+    const ordered=data.reverse();
+    const signature=ordered.map(x=>x.id).join(',');
+    if(signature===messageSignature && $('chat').childElementCount)return;
+    messageSignature=signature;
+    const chat=$('chat'), nearBottom=chat.scrollHeight-chat.scrollTop-chat.clientHeight<100;
+    chat.replaceChildren();
+    if(!ordered.length)emptyState(chat,'♡','La primera palabra es tuya.','Deja aquí un mensaje para tu persona favorita.');
+    ordered.forEach(row=>{
+      const article=document.createElement('article');article.className='message'+(row.sender_id===currentUser.id?' mine':'');
+      const name=document.createElement('small');name.textContent=row.sender_id===currentUser.id?'Tú':'Tu persona favorita';
+      const body=document.createElement('p');body.textContent=row.body;
+      const date=document.createElement('small');date.textContent=new Date(row.created_at).toLocaleString('es',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+      article.append(name,body,date);chat.append(article);
+    });
+    if(nearBottom)chat.scrollTop=chat.scrollHeight;
+  }catch(error){if(version===generation)notify(errorText(error))}
+  finally{messageLoading=false}
+}
+async function loadPhotos(force=false){
+  if(!currentUser||photoLoading)return;
+  photoLoading=true;
+  const version=generation;
+  try{
+    const {data,error}=await client.from('couple_photos').select('*').order('meeting_date',{ascending:false});
+    if(error)throw error;
+    if(version!==generation || !currentUser)return;
+    const signature=data.map(x=>x.id).join(',');
+    if(!force && signature===photoSignature && Date.now()-photoRefresh<2400000 && $('gallery').childElementCount)return;
+    const prepared=await Promise.all(data.map(async row=>{
+      const {data:signed,error}=await client.storage.from('couple-memories').createSignedUrl(row.storage_path,3600);
+      if(error)throw error;
+      return {row,url:signed.signedUrl};
+    }));
+    if(version!==generation || !currentUser)return;
+    photoSignature=signature;photoRefresh=Date.now();
+    const gallery=$('gallery');gallery.replaceChildren();
+    if(!data.length){gallery.style.display='block';emptyState(gallery,'☼','Nuestros recuerdos empiezan aquí.','Añade una foto y la fecha de ese día que compartieron.');return}
+    gallery.style.display='';
+    prepared.forEach(({row,url})=>{
+      const article=document.createElement('article');article.className='memory';
+      const image=document.createElement('img');image.src=url;image.alt=row.title;image.loading='lazy';
+      const heading=document.createElement('h3');heading.textContent=row.title;
+      const meta=document.createElement('p');meta.textContent=new Date(row.meeting_date+'T12:00:00').toLocaleDateString('es',{day:'numeric',month:'long',year:'numeric'});
+      article.append(image,heading,meta);
+      if(row.owner_id===currentUser.id){
+        const button=document.createElement('button');button.textContent='Eliminar';
+        button.addEventListener('click',async()=>{
+          if(!confirm('¿Eliminar este recuerdo? Esta acción no se puede deshacer.'))return;
+          button.disabled=true;
+          try{
+            const {error}=await client.from('couple_photos').delete().eq('id',row.id);
+            if(error)throw error;
+            const removed=await client.storage.from('couple-memories').remove([row.storage_path]);
+            if(removed.error)notify('Recuerdo eliminado. No se pudo borrar el archivo; revísalo en Storage.');
+            await loadPhotos(true);
+          }catch(error){notify(errorText(error));button.disabled=false}
+        });
+        meta.append(button);
+      }
+      gallery.append(article);
+    });
+  }catch(error){if(version===generation)notify(errorText(error))}
+  finally{photoLoading=false}
+}
+$('login-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!client){$('setup-dialog').showModal();$('login-status').textContent='Primero conecta tu proyecto con su clave pública.';return}
+  busy(event.target,true);$('login-status').textContent='';
+  try{
+    const {data,error}=await client.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+    if(error)throw error;
+    await openSession(data.session);
+  }catch(error){$('login-status').textContent=errorText(error)}
+  finally{busy(event.target,false)}
+});
+$('show-password').addEventListener('click',()=>{
+  const show=$('password').type==='password';$('password').type=show?'text':'password';
+  $('show-password').textContent=show?'Ocultar':'Mostrar';$('show-password').setAttribute('aria-pressed',String(show));
+});
+$('logout').addEventListener('click',async()=>{
+  const {error}=await client.auth.signOut();
+  if(error)notify(errorText(error));else showSignedOut();
+});
+$('message-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(!currentUser)return;
+  const text=$('message').value.trim();if(!text)return;
+  busy(event.target,true);
+  try{
+    const {error}=await client.from('couple_messages').insert({sender_id:currentUser.id,body:text});
+    if(error)throw error;
+    $('message').value='';await loadMessages();$('chat').scrollTop=$('chat').scrollHeight;
+  }catch(error){notify(errorText(error))}
+  finally{busy(event.target,false)}
+});
+function chooseTab(photos){
+  $('messages-tab').setAttribute('aria-selected',String(!photos));
+  $('photos-tab').setAttribute('aria-selected',String(photos));
+  $('messages-panel').hidden=photos;$('photos-panel').hidden=!photos;
+}
+$('messages-tab').onclick=()=>chooseTab(false);
+$('photos-tab').onclick=()=>{chooseTab(true);loadPhotos()};
+document.querySelector('.tabs').addEventListener('keydown',event=>{
+  if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+    event.preventDefault();
+    const photos=$('photos-tab').getAttribute('aria-selected')!=='true';
+    chooseTab(photos);$(photos?'photos-tab':'messages-tab').focus();
+  }
+});
+$('add-photo').onclick=()=>{
+  const now=new Date();
+  $('photo-date').value=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  $('photo-dialog').showModal();
+};
+$('photo-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(!currentUser)return;
+  const file=$('photo-file').files[0],title=$('photo-title').value.trim();
+  if(!title)return;
+  if(!file||!['image/jpeg','image/png','image/webp'].includes(file.type)){notify('Elige una imagen JPG, PNG o WebP.');return}
+  if(file.size>10485760){notify('La imagen debe pesar menos de 10 MB.');return}
+  busy(event.target,true);
+  const ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[file.type];
+  const owner=currentUser.id,path=owner+'/'+crypto.randomUUID()+'.'+ext;
+  let uploaded=false,saved=false;
+  try{
+    const upload=await client.storage.from('couple-memories').upload(path,file,{contentType:file.type,upsert:false});
+    if(upload.error)throw upload.error;
+    uploaded=true;
+    const {error}=await client.from('couple_photos').insert({owner_id:owner,title,meeting_date:$('photo-date').value,storage_path:path});
+    if(error)throw error;
+    saved=true;$('photo-dialog').close();event.target.reset();notify('Un nuevo recuerdo, guardado para los dos. ♡');
+    await loadPhotos(true);
+  }catch(error){
+    if(uploaded&&!saved)await client.storage.from('couple-memories').remove([path]);
+    notify(errorText(error));
+  }finally{busy(event.target,false)}
+});
+$('setup-button').onclick=()=>{
+  const config=getConfig();$('project-url').value=config.url||PROJECT;$('public-key').value=config.key||'';
+  $('setup-dialog').showModal();
+};
+document.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>$(button.dataset.close).close());
+$('config-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  const url=$('project-url').value.trim().replace(/\/$/,''),key=$('public-key').value.trim();
+  if(!url.startsWith('https://')){notify('Usa una URL HTTPS de Supabase.');return}
+  let administrative=key.startsWith('sb_secret_');
+  try{
+    const payload=JSON.parse(atob(key.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+    administrative=administrative||payload.role==='service_role';
+  }catch{}
+  if(administrative){notify('No uses una clave secreta o service_role. Busca la clave pública.');return}
+  try{
+    if(client){await client.auth.signOut();authSubscription?.unsubscribe()}
+    showSignedOut();
+    localStorage.setItem('entre-nosotros-config',JSON.stringify({url,key}));
+    makeClient();$('setup-dialog').close();notify('Conexión guardada. Ya puedes iniciar sesión.');
+  }catch(error){notify(errorText(error))}
+});
+$('copy-sql').onclick=async()=>{
+  try{await navigator.clipboard.writeText($('sql-code').textContent);notify('SQL copiado. Ejecútalo en el SQL Editor de Supabase.')}
+  catch{notify('Selecciona el SQL y cópialo manualmente.')}
+};
+makeClient();
+if(!window.supabase) $('login-status').textContent='No se pudo cargar Supabase. Revisa tu conexión y recarga la página.';
+</script>
+</body>
+</html>
+
